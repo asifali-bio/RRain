@@ -2,7 +2,7 @@ library(tidyr)
 library(dplyr)
 
 
-load("Pfam.RData")
+load("pfam.RData")
 
 new3 = new2
 rownames(new3) = new3[,1]
