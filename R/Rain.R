@@ -70,6 +70,10 @@ long = merge(long, coords, by = "species")
 
 long$z = as.numeric(factor(long$pfam, levels = rownames(new4)))
 
+long$x = signif(long$x, 4)
+long$y = signif(long$y, 4)
+long$tpm = signif(long$tpm, 4)
+
 p = plot_ly(
   data = long,
   x = ~x,
@@ -93,4 +97,5 @@ p = p %>% layout(
   )
 )
 
+p <- p %>% partial_bundle()
 p
