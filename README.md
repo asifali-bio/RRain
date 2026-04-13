@@ -12,7 +12,7 @@ Instead of genes defining the primary structure, RRain aggregates expression int
 
 ---
 
-## 🌐 Demo
+## 🌐 Live Demo
 https://asifali-bio.github.io/RRain/
 
 ---
@@ -136,7 +136,8 @@ enabling exploration of **cellular heterogeneity and transitions**.
 ## 🔧 Prototype stage
 
 - Current implementation uses point-based towers (Plotly)
-- Future work:
+
+Future work:
 - continuous / volumetric tower rendering
 - optimized large-scale visualization
 - domain hierarchy-aware stacking
