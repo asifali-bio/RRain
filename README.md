@@ -4,9 +4,13 @@
 
 # Reverse Rain (RRain)
 
-**RRain** is a visualization framework for representing high-dimensional data as **vertical structures in latent space**.
+**RRain** is a visualization framework for representing **single-cell RNA-seq data in functional space** using protein domains.
 
-It projects samples into a low-dimensional plane (e.g., PCA/UMAP), then stacks their features vertically—creating “towers” that resemble **upside-down rain** emerging from a cloud of points. Instead of points falling downward, features appear to **rise upward** from each sample’s position—like rain in reverse.
+It extends the PLANT framework by projecting cells into a low-dimensional embedding and stacking their **domain-level features vertically**, creating “towers” that resemble **upside-down rain** emerging from a cloud of cells.
+
+Instead of genes defining the primary structure, RRain aggregates expression into **protein domains (e.g., Pfam)**—allowing visualization of **functional composition per cell**.
+
+---
 
 ## 🌐 Demo
 https://asifali-bio.github.io/RRain/
@@ -15,67 +19,127 @@ https://asifali-bio.github.io/RRain/
 
 ## Concept
 
-RRain separates data into three intuitive dimensions:
+RRain separates the data into three intuitive dimensions:
 
-* **(x, y)** → *latent embedding of samples*
-* **z** → *feature index (e.g., Pfam domains, genes, variables)*
-* **color / size** → *feature magnitude (e.g., TPM, counts)*
+- **(x, y)** → latent embedding of cells (domain space PCA/UMAP)
+- **z** → feature index (protein domains)
+- **size** → domain-level expression (aggregated counts / TPM)
+- **color** → cell clusters (e.g., Seurat clustering)
 
-Each sample becomes a **vertical column (tower)** of its features, positioned according to similarity in latent space.
+Each cell becomes a **vertical tower of domains**, positioned according to similarity in functional space.
+
+---
+
+## Key idea
+
+Traditional scRNA-seq pipelines operate in **gene space**, using highly variable genes for dimensionality reduction and clustering.
+
+RRain instead constructs a parallel representation in **domain space**:
+
+```
+cells × genes → cells × domains
+```
+
+by mapping:
+
+```
+gene → protein → Pfam domain
+```
+
+
+This enables:
+
+- Functional aggregation across genes
+- Reduced redundancy (shared domains)
+- Sharper boundaries between cell states
+- Visualization of transitions via domain composition
 
 ---
 
 ## What it shows
 
-RRain allows you to simultaneously visualize:
+RRain allows simultaneous visualization of:
 
-* Global similarity between samples (via spatial proximity)
-* Internal structure of each sample (via vertical patterns)
-* Feature presence/absence (via sparsity or gaps)
-* Feature magnitude (via size or color)
+- Global similarity between cells (embedding)
+- Functional structure of each cell (tower composition)
+- Domain presence/absence (gaps in towers)
+- Domain magnitude (bubble size)
+- Cluster identity (color via Seurat)
+
+---
+
+## Workflow
+
+1. **Input data**
+
+   - scRNA-seq count matrix (cells × genes)
+
+2. **Domain annotation**
+
+   - Run InterProScan on a reference proteome
+   - Extract Pfam domains
+   - Map UniProt → gene symbols (Ensembl / biomaRt)
+
+3. **Aggregation**
+
+   - Map genes → domains
+   - Sum expression per domain per cell
+
+```
+cells × genes → cells × domains
+```
+
+4. **Embedding**
+
+- PCA / UMAP on domain matrix
+
+5. **Visualization**
+
+- Convert to long format
+- Plot 3D towers:
+
+  - x, y = embedding
+  - z = domain index
+  - size = domain expression
+  - color = cluster identity
+
+---
+
+## Relationship to PLANT
+
+RRain builds directly on PLANT:
+
+- **PLANT** → bulk / cross-sample domain composition
+- **RRain** → single-cell domain composition
+
+RRain extends the idea from:
+
+> “one tower per sample”
+
+to:
+
+> “one tower per cell”
+
+enabling exploration of **cellular heterogeneity and transitions**.
 
 ---
 
 ## Example use cases
 
-* Protein domain composition across species
-* Single-cell RNA-seq profiles
-* Microbiome abundance data
-* Any high-dimensional feature matrix
-
----
-
-## Basic workflow
-
-1. Start with a feature matrix:
-
-   * rows = features
-   * columns = samples
-
-2. Preprocess:
-
-   * handle missing values (e.g., NA → 0 for distance)
-   * optionally filter low-variance features
-
-3. Compute embedding:
-
-   * PCA, UMAP, etc.
-
-4. Convert to long format:
-
-   * one row per (sample, feature)
-
-5. Plot in 3D:
-
-   * x, y = embedding
-   * z = feature index
-   * color/size = feature value
+- Single-cell RNA-seq (primary use case)
+- Functional profiling of cell states
+- Domain-level clustering and boundary detection
+- Comparative analysis of cell populations
 
 ---
 
 ## 🔧 Prototype stage
 
-* Eventually, continuous / volumetric tower rendering
+- Current implementation uses point-based towers (Plotly)
+- Future work:
+- continuous / volumetric tower rendering
+- optimized large-scale visualization
+- domain hierarchy-aware stacking
 
 ---
 
