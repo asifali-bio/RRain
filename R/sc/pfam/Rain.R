@@ -1,6 +1,3 @@
-#install.packages("BiocManager")
-#BiocManager::install("biomaRt")
-
 library(biomaRt)
 library(dplyr)
 library(tidyr)
