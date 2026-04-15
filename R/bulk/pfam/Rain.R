@@ -1,5 +1,5 @@
-library(tidyr)
 library(dplyr)
+library(tidyr)
 library(plotly)
 
 
@@ -26,7 +26,7 @@ X = X[, apply(X, 2, var) != 0]
 #UMAP
 library(uwot)
 
-umap_coords = umap(X, n_neighbors = 3, min_dist = 0.2)
+umap_coords = umap(X, n_neighbors = 3, min_dist = 0.2, metric = "cosine")
 coords = as.data.frame(umap_coords)
 colnames(coords) = c("UMAP1", "UMAP2")
 coords$species = rownames(X)
