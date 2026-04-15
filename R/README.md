@@ -145,7 +145,7 @@ The single-cell pipeline extends the bulk idea described in the main repo by emb
 
 For any `sc/` or `bulk/` subfolder:
 
-1. Open the corresponding `Rain.R` (or bulk script)
+1. Open the corresponding `Rain.R`
 2. Run line-by-line in R / RStudio
 3. Ensure required packages are installed:
    - `Seurat`
