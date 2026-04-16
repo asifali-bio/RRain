@@ -26,7 +26,6 @@ colnames(pfam_subset) <- c("protein", "db", "domain")
 
 pfam_subset$uniprot <- sub(".*\\|(.*?)\\|.*", "\\1", pfam_subset$protein)
 
-
 mart <- useMart("ensembl", dataset = "hsapiens_gene_ensembl")
 
 mapping <- getBM(
