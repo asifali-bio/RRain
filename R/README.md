@@ -158,7 +158,6 @@ For any `sc/` or `bulk/` subfolder:
 
 ---
 
-## ⚠️ Notes
+## ⚙️ Performance
 
-- `3D.RData` is **fully reproducible** from `Rain.R`
 - 3D Plotly visualizations can require **32–64 GB RAM** for PBMC-scale datasets due to millions of rendered points
