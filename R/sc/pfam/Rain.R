@@ -139,11 +139,17 @@ USE_ANCHOR <- FALSE
 if (USE_ANCHOR) {
   #assign labels
   cluster_labels <- c(
-    "0" = "CD4 T",
-    "1" = "CD14 Monocyte",
+    "0" = "CD4 T (naive)",
+    "1" = "CD8 T",
     "2" = "B cell",
     "3" = "NK cell",
-    "4" = "CD8 T"
+    "4" = "CD14 Monocyte",
+    "5" = "CD16 Monocyte",
+    "6" = "Dendritic cell",
+    "7" = "Platelet",
+    "8" = "Megakaryocyte",
+    "9" = "Plasma cell",
+    "10" = "CD4 T (memory)"
   )
   
   #build metadata
@@ -217,6 +223,10 @@ long$y <- signif(long$y, 4)
 
 #trim
 long <- long %>% filter(tpm > 1)
+
+#prune
+set.seed(1)
+long <- long %>% sample_frac(1.0)
 
 p <- plot_ly(
   data = long,
