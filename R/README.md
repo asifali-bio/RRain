@@ -161,6 +161,4 @@ For any `sc/` or `bulk/` subfolder:
 ## ⚠️ Notes
 
 - `3D.RData` is **fully reproducible** from `Rain.R`
-- Azimuth-based annotation is **optional** and disabled by default
-- Domain filtering removes zero-variance features and cells
-- Visualization uses **Plotly 3D scatter (point-based towers)**
+- 3D Plotly visualizations can require **32–64 GB RAM** for PBMC-scale datasets due to millions of rendered points

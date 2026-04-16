@@ -137,11 +137,6 @@ enabling exploration of **cellular heterogeneity and transitions**.
 
 - Current implementation uses point-based towers (Plotly)
 
-Future work:
-- continuous / volumetric tower rendering
-- optimized large-scale visualization
-- domain hierarchy-aware stacking
-
 ---
 
 *Banner emoji designed by OpenMoji.*
