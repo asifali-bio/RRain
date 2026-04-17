@@ -199,9 +199,9 @@ coords <- as.data.frame(pca$x[,1:2])
 
 #UMAP coordinates
 coords_umap <- as.data.frame(Embeddings(pbmc0, "umap")[,1:2])
-#same order
+#same order, force
 coords_umap <- coords_umap[colnames(pbmc0), ]
-#same elements
+#check every element
 stopifnot(setequal(colnames(pbmc0), rownames(coords_umap)))
 
 #UMAP flag
@@ -213,7 +213,7 @@ coords <- coords[valid_cells, ]
 coords$cell <- rownames(coords)
 colnames(coords)[1:2] <- c("x", "y")
 
-#safety
+#check
 stopifnot(all(valid_cells == coords$cell))
 stopifnot(all(valid_cells == meta_df$cell))
 
