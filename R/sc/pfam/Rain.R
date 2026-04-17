@@ -137,15 +137,15 @@ marker_list <- list(
   
   "CD4 T (naive)" = c("CD3D", "IL7R", "CCR7"),
   
-  "CD14 Monocyte" = c("LYZ", "CD14", "S100A8"),
+  "CD8 T" = c("CD3D", "CD8A"),
   
   "B cell" = c("MS4A1", "CD79A"),
   
   "NK cell" = c("NKG7", "GNLY"),
   
-  "CD8 T" = c("CD3D", "CD8A"),
+  "CD14 Monocyte" = c("LYZ", "CD14", "S100A8"),
   
-  "FCGR3A Monocyte" = c("FCGR3A", "MS4A7"),
+  "CD16 Monocyte" = c("FCGR3A", "MS4A7"),
   
   "Dendritic cell" = c("FCER1A", "CST3"),
   
