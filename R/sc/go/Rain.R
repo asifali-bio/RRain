@@ -209,21 +209,21 @@ coords <- as.data.frame(pca$x[,1:2])
 
 #UMAP coordinates
 coords_umap <- as.data.frame(Embeddings(pbmc0, "umap")[,1:2])
-#same order, force
+#force order
 coords_umap <- coords_umap[colnames(pbmc0), ]
-#check every element
+#check every cell
 stopifnot(setequal(colnames(pbmc0), rownames(coords_umap)))
 
-#UMAP flag
+#UMAP FLAG
 USE_UMAP <- FALSE
 coords <- if (USE_UMAP) coords_umap else coords
 
-#enforce order and identity
+#force order + identity
 coords <- coords[valid_cells, ]
 coords$cell <- rownames(coords)
 colnames(coords)[1:2] <- c("x", "y")
 
-#check
+#check exact cell order + identity
 stopifnot(all(valid_cells == coords$cell))
 stopifnot(all(valid_cells == meta_df$cell))
 
