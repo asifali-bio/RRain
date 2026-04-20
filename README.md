@@ -91,7 +91,7 @@ cells × genes → cells × domains
 
 4. **Embedding**
 
-- PCA / UMAP on domain matrix
+- PCA / UMAP
 
 5. **Visualization**
 
