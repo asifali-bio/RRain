@@ -189,6 +189,7 @@ stopifnot(all(colnames(pbmc0) == rownames(coords_umap)))
 #UMAP FLAG
 USE_UMAP <- FALSE
 coords <- if (USE_UMAP) coords_umap else coords
+axis_label <- if (USE_UMAP) "UMAP" else "PC"
 
 #force order + identity
 coords <- coords[valid_cells, ]
@@ -221,13 +222,9 @@ long <- long %>%
 #define z-axis
 long$z <- as.numeric(factor(long$go_id))
 
-save(long, file = "3D.RData")
+save(long, axis_label, file = "3D.RData")
 #clean environment
 load("3D.RData")
-
-#UMAP FLAG
-USE_UMAP <- FALSE
-axis_label <- if (USE_UMAP) "UMAP" else "PC"
 
 long$tpm <- signif(long$tpm, 4)
 long$x <- signif(long$x, 4)
