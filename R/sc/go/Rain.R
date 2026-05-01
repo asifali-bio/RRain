@@ -114,27 +114,25 @@ table(pbmc0$seurat_clusters)
 marker_list <- list(
   
   "CD4 T (naive)" = c("CD3D", "IL7R", "CCR7"),
-  
+  "CD4 T (memory)" = c("CD3D", "IL7R", "S100A4"),
   "CD8 T" = c("CD3D", "CD8A"),
+  "Cytotoxic T" = c("GZMB", "PRF1", "NKG7"),
   
   "B cell" = c("MS4A1", "CD79A"),
+  "Plasma cell" = c("MZB1", "SDC1"),
   
   "NK cell" = c("NKG7", "GNLY"),
   
   "CD14 Monocyte" = c("LYZ", "CD14", "S100A8"),
-  
   "CD16 Monocyte" = c("FCGR3A", "MS4A7"),
   
   "Dendritic cell" = c("FCER1A", "CST3"),
+  "pDC" = c("IL3RA", "CLEC4C"),
   
   "Platelet" = c("PPBP", "PF4"),
-  
   "Megakaryocyte" = c("PPBP", "ITGA2B"),
   
-  "Plasma cell" = c("MZB1", "SDC1"),
-  
-  "CD4 T (memory)" = c("CD3D", "IL7R", "S100A4")
-  
+  "Proliferating" = c("MKI67", "TOP2A")
 )
 
 #ANCHOR FLAG
@@ -144,16 +142,19 @@ if (USE_ANCHOR) {
   #assign labels
   cluster_labels <- c(
     "0" = "CD4 T (naive)",
-    "1" = "CD8 T",
-    "2" = "B cell",
-    "3" = "NK cell",
-    "4" = "CD14 Monocyte",
-    "5" = "CD16 Monocyte",
-    "6" = "Dendritic cell",
-    "7" = "Platelet",
-    "8" = "Megakaryocyte",
-    "9" = "Plasma cell",
-    "10" = "CD4 T (memory)"
+    "1" = "CD4 T (memory)",
+    "2" = "CD8 T",
+    "3" = "Cytotoxic T",
+    "4" = "B cell",
+    "5" = "Plasma cell",
+    "6" = "NK cell",
+    "7" = "CD14 Monocyte",
+    "8" = "CD16 Monocyte",
+    "9" = "Dendritic cell",
+    "10" = "pDC",
+    "11" = "Platelet",
+    "12" = "Megakaryocyte",
+    "13" = "Proliferating"
   )
   
   #build metadata
