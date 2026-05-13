@@ -217,7 +217,7 @@ long <- pivot_longer(
 #remove zeros
 long <- long %>% filter(tpm > 0)
 
-#attach PCA coordinates
+#attach PCA/UMAP coordinates
 long <- long %>%
   inner_join(meta_df, by = "cell") %>%
   inner_join(coords, by = "cell")

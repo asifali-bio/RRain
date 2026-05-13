@@ -86,7 +86,7 @@ Each folder contains:
 #### 2. Processing script
 
 - **`Rain.R`**
-  - Main RRain workflow (can be run line-by-line)
+  - Main RRain workflow (can be run line by line)
   - Performs:
 
     - Mapping:
@@ -146,7 +146,7 @@ The single-cell pipeline extends the bulk idea described in the main repo by emb
 For any `sc/` or `bulk/` subfolder:
 
 1. Open the corresponding `Rain.R`
-2. Run line-by-line in R / RStudio
+2. Run line by line in R / RStudio
 3. Ensure required packages are installed:
    - `Seurat`
    - `biomaRt`
